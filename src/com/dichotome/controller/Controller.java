@@ -1,6 +1,7 @@
 package com.dichotome.controller;
 
-import com.dichotome.CommandLineReader;
+import com.dichotome.model.Subscriber;
+import com.dichotome.util.CommandLineReader;
 import com.dichotome.Data;
 import com.dichotome.exceptions.CharNotLetterException;
 import com.dichotome.model.SubscriberManager;
@@ -13,8 +14,8 @@ public class Controller {
     private CommandLine cl;
     private CommandLineReader reader;
 
-    public Controller() {
-        manager = new SubscriberManager(new Data().getSubscribers());
+    public Controller(Subscriber[] subscribers) {
+        manager = new SubscriberManager(subscribers);
         cl = new CommandLine();
         reader = new CommandLineReader();
     }

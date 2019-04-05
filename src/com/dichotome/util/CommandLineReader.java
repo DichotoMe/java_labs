@@ -1,4 +1,4 @@
-package com.dichotome;
+package com.dichotome.util;
 
 import com.dichotome.exceptions.CharNotLetterException;
 

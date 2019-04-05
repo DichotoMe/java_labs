@@ -28,7 +28,7 @@ public class CommandLine {
             "Unexpected error"
     );
 
-    public static final String EXIT = String.format("%n%s", "Exit");
+    public static final String EXIT = String.format("%n%s", "Exiting");
 
     public void displayMenu() {
         printLine(MENU);

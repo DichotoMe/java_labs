@@ -3,15 +3,37 @@ package com.dichotome;
 import com.dichotome.model.SubscriberInfo;
 import com.dichotome.model.Subscriber;
 
+import java.util.Arrays;
+
 public class Data {
-    private Subscriber[] subscribers = {
-            new Subscriber("Pavlo", "Oleksandrovych", "Bohdan", null, null),
-            new Subscriber("Stepan", "Olehovych", "Koval", 74114141, null, new SubscriberInfo(
-                    "Ukraine", 19, "Software engineer"
-            )),
-            new Subscriber("Olena", "Andriyivna", "Svytiaz", 79009213, "Yangelia street, 20"),
-            new Subscriber("Petro", "Ihorovych", "Antoniuk", 78990988, "Metalistiv street, 15")
-    };
+    private Subscriber[] subscribers = {};
+
+    private static class DataHolder {
+        private static final Data HOLDER_INSTANCE = new Data();
+    }
+
+    public static Data getInstance() {
+        return DataHolder.HOLDER_INSTANCE;
+    }
+
+    public Data add(Subscriber subscriber) {
+        int length = subscribers.length;
+        subscribers = Arrays.copyOf(subscribers, length + 1);
+        subscribers[length] = subscriber;
+        return this;
+    }
+
+    public Data remove(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= subscribers.length)
+            throw new IndexOutOfBoundsException();
+
+        for (int i = index + 1; i < subscribers.length; i++) {
+            subscribers[i - 1] = subscribers[i];
+        }
+        subscribers = Arrays.copyOf(subscribers, subscribers.length - 1);
+
+        return this;
+    }
 
     public Subscriber[] getSubscribers() {
         return subscribers;
